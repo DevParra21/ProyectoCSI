@@ -1,0 +1,35 @@
+<div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
+    <h1 class="display-5">Registro de nuevo Maestro</h1>
+    <p class="lead">Formulario para dar de alta nuevo maestro</p>
+    <hr class="my-2">
+    <form>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="form-group">
+                    <label for="inputMateria">Materia</label>
+                    <select class="form-control" name="inputMateria" id="inputMateria">
+                        <option>Seleccione...</option>
+                        <option>A01 - Diseño y Composición de Fotografía</option>
+                        <option>F25 - Estadística y Algoritmos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form-group">
+                    <label for="inputNumeroParticipantes">Cantidad de Alumnos</label>
+                    <input type="text" class="form-control" name="inputNumeroParticipantes" id="inputNumeroParticipantes">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 text-right">
+                <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/grupos']" style="width: 100%;">Regresar</button>
+            </div>
+            <div class="col-lg-10 text-right">
+                <button type="button" name="" id="" class="btn btnAceptar" style="width: 100%;">Finalizar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

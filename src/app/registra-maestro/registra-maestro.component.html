@@ -1,0 +1,79 @@
+<div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
+    <h1 class="display-5">Registro de nuevo Maestro</h1>
+    <p class="lead">Formulario para dar de alta nuevo maestro</p>
+    <hr class="my-2">
+    <form>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="inputEstatus">Estatus</label>
+                    <select class="form-control" name="inputEstatus" id="inputEstatus">
+                        <option>Seleccione...</option>
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="inputTipo">Tipo</label>
+                    <select class="form-control" name="inputTipo" id="inputTipo">
+                        <option>Seleccione...</option>
+                        <option>Planta</option>
+                        <option>Temporal</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="inputEmpleado">No. Empleado</label>
+                    <input type="text" class="form-control" name="inputEmpleado" id="inputEmpleado">
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form-group">
+                    <label for="inputUsuario">Nombre de Usuario</label>
+                    <input type="text" class="form-control" name="inputUsuario" id="inputUsuario">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label for="inputContrasenia">Contraseña</label>
+                    <input type="text" class="form-control" name="inputContrasenia" id="inputContrasenia">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="inputNombre">Nombre</label>
+                  <input type="text" class="form-control" name="inputNombre" id="inputNombre">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="inputApPaterno">Apellido Paterno</label>
+                  <input type="text" class="form-control" name="inputApPaterno" id="inputApPaterno">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="inputApMaterno">Apellido Materno</label>
+                  <input type="text" class="form-control" name="inputApMaterno" id="inputApMaterno">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 text-right">
+                <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/maestros']" style="width: 100%;">Regresar</button>
+            </div>
+            <div class="col-lg-10 text-right">
+                <button type="button" name="" id="" class="btn btnAceptar" style="width: 100%;">Finalizar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

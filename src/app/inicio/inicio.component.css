@@ -1,0 +1,19 @@
+.card{
+    background-image: url('../../assets/fondoflama-2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+input{
+    width: 50%;
+}
+
+#btnInicioSesion{
+    background-color: #05396E;
+    color: white;
+    width: 87%;
+}
+
+#btnInicioSesion:hover{
+    background-color: #657690;
+}

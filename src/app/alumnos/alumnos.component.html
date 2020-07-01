@@ -1,0 +1,52 @@
+<div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
+    <h1 class="display-5">Alumnos</h1>
+    <p class="lead">Catálogo de alumnos inscritos</p>
+    <hr class="my-2">
+    <div class="row mb-2">
+        <div class="col-lg-8 text-center">
+            <input class="form-control" type="text" placeholder="Buscar Alumno..." aria-label="Search">
+        </div>
+        <div class="col-lg-2">
+            <select name="filtro" id="filtro" class="form-control">
+                <option value="1">Matrícula</option>
+                <option value="2">Usuario</option>
+                <option value="3">Nombre</option>
+                <option value="4">Estatus</option>
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btnAceptar" style="width: 100%;">Buscar</button>
+        </div>
+    </div>
+    <table class="table table-striped table-inverse text-white">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Matricula</th>
+                <th>Usuario</th>
+                <th>Nombre</th>
+                <th class="text-center">Estatus</th>
+                <th class="text-center">Modificar</th>
+                <th class="text-center">Eliminar</th>
+            </tr>
+            </thead>
+            <tbody style="height: 10%; overflow: scroll;">
+                <tr *ngFor="let item of this.alumnos">
+                    <td scope="row">{{item.matricula}}</td>
+                    <td>{{item.nombreUsuario}}</td>
+                    <td>{{item.nombre}} {{item.apPaterno}} {{item.apMaterno}}</td>
+                    <td class="text-center">{{item.estatus}}</td>
+                    <td class="text-center" style="border-left-style: solid;"><button class="btn btn-primary">Modificar</button></td>
+                    <td class="text-center"><button class="btn btn-danger">Eliminar</button></td>
+                </tr>
+            </tbody>
+    </table>
+    <div class="row">
+        <div class="col-lg-2 text-right">
+            <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/principal']" style="width: 100%;">Regresar</button>
+        </div>
+        <div class="col-lg-10 text-right">
+            <button type="button" name="" id="" class="btn btnAceptar" style="width: 100%;" [routerLink]="['/registra-alumno']">Agregar nuevo Alumno</button>
+        </div>
+    </div>
+</div>
+

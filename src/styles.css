@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #FBC43D;
+}
+
+.btnAceptar{
+    background-color: #028090;
+    color: white;
+}
+
+.btnAceptar:hover{
+    background-color: #05668d;
+    color: white;
+}
+
+.btnCancelar{
+   background-color: #FBC43D;
+   color: white;
+}
+
+.btnCancelar:hover{
+    background-color: #f3722c;
+    color:white;
+}

@@ -1,0 +1,97 @@
+<div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
+    <h1 class="display-5">Inscripción a Grupo</h1>
+    <p class="lead">Aquí puedes registrarte a grupos disponibles o darte de baja de grupos en los que ya te encuentres inscrito</p>
+    <hr class="my-2">
+    <div class="row">
+        <div class="col-lg-9">
+            <legend>Grupos Inscritos</legend>
+        </div>
+        <div class="col-lg-3" style="width: 100%;">
+            <legend>Matrícula: 1607641</legend>
+        </div>
+    </div>
+    <div style="overflow: scroll !important; max-height: 300px !important;">
+        <table class="table table-striped text-white">
+            <thead class="thead-inverse">
+                <tr>
+                    <th style="position:sticky;">Grupo</th>
+                    <th style="position:sticky;">Materia</th>
+                    <th style="position:sticky;" class="text-center">Dar de Baja</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">0001</td>
+                        <td>G03 - Diseño de Escenarios 3D</td>
+                        <td class="text-center" style="border-left-style: solid;"><button class="btn btn-danger">Baja</button></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">0021</td>
+                        <td>H03 - Diseño Web</td>
+                        <td class="text-center" style="border-left-style: solid;"><button class="btn btn-danger">Baja</button></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">0021</td>
+                        <td>H03 - Diseño Web</td>
+                        <td class="text-center" style="border-left-style: solid;"><button class="btn btn-danger">Baja</button></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">0021</td>
+                        <td>H03 - Diseño Web</td>
+                        <td class="text-center" style="border-left-style: solid;"><button class="btn btn-danger">Baja</button></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">0021</td>
+                        <td>H03 - Diseño Web</td>
+                        <td class="text-center" style="border-left-style: solid;"><button class="btn btn-danger">Baja</button></td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+    <hr>
+    <legend>Grupos Disponibles</legend>
+    <div class="row mb-2">
+        <div class="col-lg-8 text-center">
+            <input class="form-control" type="text" placeholder="Buscar Grupo..." aria-label="Search">
+        </div>
+        <div class="col-lg-2">
+            <select name="filtro" id="filtro" class="form-control">
+                <option value="1">Grupo</option>
+                <option value="2">Clave de Materia</option>
+                <option value="3">Nombre de Materia</option>
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btnAceptar" style="width: 100%;">Buscar</button>
+        </div>
+    </div>
+    <div  style="overflow: scroll !important; max-height: 300px !important;">
+        <table class="table table-striped text-white">
+            <thead class="thead-inverse">
+                <tr>
+                    <th style="position:sticky;">Grupo</th>
+                    <th style="position:sticky;">Materia</th>
+                    <th style="position:sticky;" class="text-center">Registrar</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">0001</td>
+                        <td>G03 - Diseño de Escenarios 3D</td>
+                        <td class="text-center" style="border-left-style: solid;"><button class="btn btn-primary">Registrar</button></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">0021</td>
+                        <td>H03 - Diseño Web</td>
+                        <td class="text-center" style="border-left-style: solid;"><button class="btn btn-primary">Registrar</button></td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-12 text-center">
+            <button type="button" name="" id="" class="btn btnAceptar" style="width: 100%;" [routerLink]="['/principal']">Finalizar</button>
+        </div>
+    </div>
+</div>
+
