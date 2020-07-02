@@ -1,36 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Maestro } from './maestro';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class MaestroService {
 
-  maestros: Maestro[]=[
-    {
-      noEmpleado:'12344',
-      nombreUsuario:'mPatricio',
-      contrasenia:'abc1',
-      nombre:'Patricio',
-      apPaterno:'Parra',
-      apMaterno:'Escudero',
-      tipo:1,
-      estatus:1
-    },
-    {
-      noEmpleado:'22331',
-      nombreUsuario:'mLorena',
-      contrasenia:'opq21',
-      nombre:'Lorena',
-      apPaterno:'Sandoval',
-      apMaterno:'Mendoza',
-      tipo:1,
-      estatus:1
-    }
-  ];
+  private urlEndpoint:string = 'http://localhost:8080/api/maestros';
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  getMaestros(): Maestro[]{
-    return this.maestros;
+  getMaestros(): Observable<Maestro[]>{
+    return this.http.get(this.urlEndpoint).pipe(
+      map(response => response as Maestro[])
+    );
   }
 }

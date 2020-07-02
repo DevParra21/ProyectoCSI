@@ -13,7 +13,7 @@ export class MaestrosComponent implements OnInit {
   constructor(private maestroService:MaestroService) { }
 
   ngOnInit(): void {
-    this.maestros = this.maestroService.getMaestros();
+    this.maestroService.getMaestros().subscribe( res => this.maestros = res );
   }
 
 }

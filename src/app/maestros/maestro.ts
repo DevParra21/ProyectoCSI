@@ -1,10 +1,16 @@
 export class Maestro {
-    noEmpleado:String;
-    nombreUsuario:String;
-    contrasenia:String;
-    nombre:String;
-    apPaterno:String;
-    apMaterno:String;
-    tipo:number;
-    estatus:number;
+    numeroEmpleado:number;
+    usuario:{
+        estatus:{
+            nombre:string;
+        };
+        nombre:string;
+        apellidoPaterno:string;
+        apellidoMaterno:string;
+        nombreUsuario:string;
+    };
+    tipoProfesor:{
+        tipoNombre:string;
+    };
+
 }

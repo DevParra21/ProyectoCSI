@@ -34,11 +34,11 @@
             </thead>
             <tbody style="height: 10%; overflow: scroll;">
                 <tr *ngFor="let item of this.maestros">
-                    <td scope="row">{{item.noEmpleado}}</td>
-                    <td>{{item.nombreUsuario}}</td>
-                    <td>{{item.nombre}} {{item.apPaterno}} {{item.apMaterno}}</td>
-                    <td>{{item.tipo}}</td>
-                    <td>{{item.estatus}}</td>
+                    <td scope="row">{{item.numeroEmpleado}}</td>
+                    <td>{{item.usuario.nombreUsuario}}</td>
+                    <td><i>{{item.usuario.nombre}} {{item.usuario.apellidoPaterno}} {{item.usuario.apellidoMaterno}}</i></td>
+                    <td>{{item.tipoProfesor.tipoNombre}}</td>
+                    <td>{{item.usuario.estatus.nombre}}</td>
                     <td class="text-center" style="border-left-style: solid;"><button class="btn btn-primary">Modificar</button></td>
                     <td class="text-center"><button class="btn btn-danger">Eliminar</button></td>
                 </tr>

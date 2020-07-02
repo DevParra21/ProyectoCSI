@@ -1,8 +1,11 @@
 export class Grupo {
     id:number;
-    claveMateria:String;
-    nombreMateria:String;
-    cantidadAlumnos:number;
-    estatus:number;
+    materia:{
+        claveMateria:string;
+        nombreMateria:string;
+    }
+    estatusGrupo:{
+        nombreEstatus:string;
+    }
 }
 

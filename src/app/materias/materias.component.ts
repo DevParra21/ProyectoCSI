@@ -13,7 +13,7 @@ export class MateriasComponent implements OnInit {
   constructor(private materiaService: MateriaService) { }
 
   ngOnInit(): void {
-    this.materias = this.materiaService.getMaterias();
+    this.materiaService.getMaterias().subscribe( res => this.materias = res );
   }
 
 }

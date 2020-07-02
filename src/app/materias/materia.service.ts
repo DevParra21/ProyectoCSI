@@ -1,30 +1,21 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Materia } from './materia';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class MateriaService {
-  materias: Materia[] =[
-    {
-      claveMateria: 'G07',
-      nombreMateria: 'Programación Avanzada',
-      estatus:1
-    },
-    {
-      claveMateria: 'B35',
-      nombreMateria: 'Diseño Industrial',
-      estatus:1
-    },
-    {
-      claveMateria: 'J44',
-      nombreMateria: 'Contexto Social y Emprendimiento',
-      estatus:1
-    }
-  ];
+  
 
-  constructor() { }
+  private urlEndpoint:string = 'http://localhost:8080/api/materias';
 
-  getMaterias(): Materia[]{
-    return this.materias;
+  constructor(private http:HttpClient) { }
+
+  getMaterias(): Observable<Materia[]>{
+    return this.http.get(this.urlEndpoint).pipe(
+      map(response => response as Materia[])
+    );
   }
 }

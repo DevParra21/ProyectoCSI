@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Alumno } from './alumno';
 
 @Injectable({
@@ -7,30 +9,13 @@ import { Alumno } from './alumno';
 })
 export class AlumnoService {
 
-  alumno: Alumno[]=[
-    {
-      matricula: '1607641',
-      nombre: 'Patricio',
-      apPaterno: 'Escudero',
-      apMaterno: 'Parra',
-      nombreUsuario: 'pEscudero',
-      contrasenia: 'abc123',
-      estatus:1
-    },
-    {
-      matricula: '1859331',
-      nombre: 'Lorena',
-      apPaterno: 'Sandoval',
-      apMaterno: 'Parra',
-      nombreUsuario: 'lSandoval',
-      contrasenia: 'cont12',
-      estatus:1
-    }
-  ];
+  private urlEndpoint: string='http://localhost:8080/api/alumnos';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAlumnos(): Alumno[]{
-    return this.alumno;
+  getAlumnos(): Observable<Alumno[]>{
+    return this.http.get(this.urlEndpoint).pipe(
+      map( response => response as Alumno[])
+    );
   }
 }

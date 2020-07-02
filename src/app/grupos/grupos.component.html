@@ -32,9 +32,9 @@
             <tbody style="height: 10%; overflow: scroll;">
                 <tr *ngFor="let item of grupos">
                     <td scope="row">{{item.id}}</td>
-                    <td>{{item.claveMateria}}</td>
-                    <td>{{item.nombreMateria}}</td>
-                    <td>{{item.estatus}}</td>
+                    <td>{{item.materia.claveMateria}}</td>
+                    <td><i>{{item.materia.nombreMateria}}</i></td>
+                    <td>{{item.estatusGrupo.nombreEstatus}}</td>
                     <td class="text-center" style="border-left-style: solid;"><button class="btn btn-primary">Modificar</button></td>
                     <td class="text-center"><button class="btn btn-danger">Eliminar</button></td>
                 </tr>

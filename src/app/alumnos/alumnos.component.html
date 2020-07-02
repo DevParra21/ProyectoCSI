@@ -32,9 +32,9 @@
             <tbody style="height: 10%; overflow: scroll;">
                 <tr *ngFor="let item of this.alumnos">
                     <td scope="row">{{item.matricula}}</td>
-                    <td>{{item.nombreUsuario}}</td>
-                    <td>{{item.nombre}} {{item.apPaterno}} {{item.apMaterno}}</td>
-                    <td class="text-center">{{item.estatus}}</td>
+                    <td>{{item.usuario.nombreUsuario}}</td>
+                    <td><i>{{item.usuario.nombre}} {{item.usuario.apellidoPaterno}} {{item.usuario.apellidoMaterno}}</i></td>
+                    <td class="text-center">{{item.usuario.estatus.nombre}}</td>
                     <td class="text-center" style="border-left-style: solid;"><button class="btn btn-primary">Modificar</button></td>
                     <td class="text-center"><button class="btn btn-danger">Eliminar</button></td>
                 </tr>

@@ -1,9 +1,14 @@
 export class Alumno {
-    matricula:String;
-    nombre:String;
-    apPaterno:String;
-    apMaterno:String;
-    nombreUsuario:String;
-    contrasenia:String;
-    estatus:number;
+    matricula:number;
+    usuario:{
+        estatus:{
+            nombre:string;
+        };
+        nombre:string;
+        apellidoPaterno:string;
+        apellidoMaterno:string;
+        nombreUsuario:string;
+        contrasenia:string;
+    };
+    
 }

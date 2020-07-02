@@ -1,24 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    background-color: #FBC43D;
+    background-color: #FBC43D !important;
 }
 
 .btnAceptar{
-    background-color: #028090;
-    color: white;
+    background-color: #028090 !important;
+    color: white !important;
 }
 
 .btnAceptar:hover{
-    background-color: #05668d;
-    color: white;
+    background-color: #05668d !important;
+    color: white !important;
 }
 
 .btnCancelar{
-   background-color: #FBC43D;
-   color: white;
+   background-color: #FBC43D !important;
+   color: white !important;
 }
 
 .btnCancelar:hover{
-    background-color: #f3722c;
-    color:white;
+    background-color: #f3722c !important;
+    color:white !important;
 }

@@ -16,7 +16,8 @@ export class AlumnosComponent implements OnInit {
   constructor(private alumnoService: AlumnoService) { }
 
   ngOnInit(): void {
-    this.alumnos = this.alumnoService.getAlumnos();
+    this.alumnoService.getAlumnos().subscribe(res => this.alumnos =  res );
+    
   }
 
   

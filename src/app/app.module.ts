@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +19,11 @@ import { RegistraMaestroComponent } from './registra-maestro/registra-maestro.co
 import { RegistraMateriaComponent } from './registra-materia/registra-materia.component';
 import { RegistraGrupoComponent } from './registra-grupo/registra-grupo.component';
 import { InscribirMateriaComponent } from './inscribir-materia/inscribir-materia.component';
+
+import { MaestroService } from './maestros/maestro.service';
+import { AlumnoService } from './alumnos/alumno.service';
+import { MateriaService } from './materias/materia.service';
+import { GrupoService } from './grupos/grupo.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/inicio', pathMatch: 'full'},
@@ -56,9 +62,15 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
     ],
-  providers: [],
+  providers: [
+    MaestroService,
+    AlumnoService,
+    MateriaService,
+    GrupoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,7 @@ export class GruposComponent implements OnInit {
   constructor(private grupoService:GrupoService) { }
 
   ngOnInit(): void {
-    this.grupos = this.grupoService.getGrupos();
+    this.grupoService.getGrupos().subscribe( res => this.grupos = res );
   }
 
 }
