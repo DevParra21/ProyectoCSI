@@ -20,5 +20,28 @@ export class AlumnosComponent implements OnInit {
     
   }
 
+  delete(alumno:Alumno):void{
+    Swal.fire({
+      title: 'Eliminación de Alumno',
+      text: "¿Deseas Continuar? Esta acción no será reversible.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.value) {
+        this.alumnoService.delete(alumno.matricula).subscribe(response =>{
+          this.alumnos = this.alumnos.filter(alu => alu !== alumno)
+          Swal.fire(
+            'Alumno Eliminado',
+            'El registro ha sido eliminado correctamente.',
+            'success'
+          )
+        })
+      }
+    })
+  }
+
   
 }

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,14 +11,15 @@ import { HeaderComponent } from './header/header.component';
 
 import { InicioComponent } from './inicio/inicio.component';
 import { PrincipalComponent } from './principal/principal.component';
+
 import { MaestrosComponent } from './maestros/maestros.component';
+import { MaestroFormComponent } from './maestros/maestro-form.component';
 import { AlumnosComponent } from './alumnos/alumnos.component';
+import { AlumnoFormComponent } from './alumnos/alumno-form.component';
 import { MateriasComponent } from './materias/materias.component';
+import { MateriaFormComponent } from './materias/materia-form.component';
 import { GruposComponent } from './grupos/grupos.component';
-import { RegistraAlumnoComponent } from './registra-alumno/registra-alumno.component';
-import { RegistraMaestroComponent } from './registra-maestro/registra-maestro.component';
-import { RegistraMateriaComponent } from './registra-materia/registra-materia.component';
-import { RegistraGrupoComponent } from './registra-grupo/registra-grupo.component';
+import { GrupoFormComponent } from './grupos/grupo-form.component';
 import { InscribirMateriaComponent } from './inscribir-materia/inscribir-materia.component';
 
 import { MaestroService } from './maestros/maestro.service';
@@ -30,14 +32,18 @@ const routes: Routes = [
   {path: 'inicio', component: InicioComponent},
   {path: 'principal', component: PrincipalComponent},
   {path: 'alumnos', component: AlumnosComponent},
-  {path: 'registra-alumno', component: RegistraAlumnoComponent},
+  {path: 'alumnos/registra-alumno', component: AlumnoFormComponent},
+  {path: 'alumnos/modifica-alumno/:id', component: AlumnoFormComponent},
   {path: 'inscripcion', component: InscribirMateriaComponent},
   {path: 'maestros', component: MaestrosComponent},
-  {path: 'registra-maestro', component: RegistraMaestroComponent},
+  {path: 'maestros/registra-maestro', component: MaestroFormComponent},
+  {path: 'maestros/modifica-maestro/:id', component: MaestroFormComponent},
   {path: 'materias', component: MateriasComponent},
-  {path: 'registra-materia', component: RegistraMateriaComponent},
+  {path: 'materias/registra-materia', component: MateriaFormComponent},
+  {path: 'materias/modifica-materia/:id', component: MateriaFormComponent},
   {path: 'grupos', component: GruposComponent},
-  {path: 'registra-grupo', component: RegistraGrupoComponent}
+  {path: 'grupos/registra-grupo', component: GrupoFormComponent},
+  {path: 'grupos/modifica-grupo/:id', component: GrupoFormComponent}
 ];
 
 
@@ -49,13 +55,13 @@ const routes: Routes = [
     InicioComponent,
     PrincipalComponent,
     MaestrosComponent,
+    MaestroFormComponent,
     AlumnosComponent,
+    AlumnoFormComponent,
     MateriasComponent,
+    MateriaFormComponent,
     GruposComponent,
-    RegistraAlumnoComponent,
-    RegistraMaestroComponent,
-    RegistraMateriaComponent,
-    RegistraGrupoComponent,
+    GrupoFormComponent,
     InscribirMateriaComponent
   ],
   imports: [
@@ -63,6 +69,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes)
     ],
   providers: [

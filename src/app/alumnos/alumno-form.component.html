@@ -18,19 +18,19 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputMatricula">Matrícula</label>
-                    <input type="text" class="form-control" name="inputMatricula" id="inputMatricula">
+                    <input type="text" class="form-control" name="inputMatricula" [(ngModel)]="temp_alumno.matricula" [disabled]="this.modificacion">
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="form-group">
                     <label for="inputUsuario">Nombre de Usuario</label>
-                    <input type="text" class="form-control" name="inputUsuario" id="inputUsuario">
+                    <input type="text" class="form-control" name="inputUsuario" [(ngModel)]="temp_alumno.usuario.nombreUsuario">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                     <label for="inputContrasenia">Contraseña</label>
-                    <input type="text" class="form-control" name="inputContrasenia" id="inputContrasenia">
+                    <input type="password" class="form-control" name="inputContrasenia" [(ngModel)]="temp_alumno.usuario.contrasenia">
                 </div>
             </div>
         </div>
@@ -38,19 +38,19 @@
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputNombre">Nombre</label>
-                  <input type="text" class="form-control" name="inputNombre" id="inputNombre">
+                  <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_alumno.usuario.nombre">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputApPaterno">Apellido Paterno</label>
-                  <input type="text" class="form-control" name="inputApPaterno" id="inputApPaterno">
+                  <input type="text" class="form-control" name="inputApPaterno" [(ngModel)]="temp_alumno.usuario.apellidoPaterno">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputApMaterno">Apellido Materno</label>
-                  <input type="text" class="form-control" name="inputApMaterno" id="inputApMaterno">
+                  <input type="text" class="form-control" name="inputApMaterno" [(ngModel)]="temp_alumno.usuario.apellidoMaterno">
                 </div>
             </div>
         </div>
@@ -59,7 +59,10 @@
                 <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/alumnos']" style="width: 100%;">Regresar</button>
             </div>
             <div class="col-lg-10 text-right">
-                <button type="button" name="" id="" class="btn btnAceptar" style="width: 100%;">Finalizar</button>
+                <button class="btn btnAceptar" role="button" style="width: 100%;" (click)="create()" *ngIf="!this.modificacion;else tmpUpdate">Finalizar Registro</button>
+                <ng-template #tmpUpdate>
+                    <button class="btn btnAceptar" role="button" style="width: 100%;" (click)="update()">Finalizar Modificación</button>
+                </ng-template>
             </div>
         </div>
     </form>

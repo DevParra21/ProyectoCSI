@@ -17,7 +17,7 @@
             <div class="col-lg-5">
                 <div class="form-group">
                     <label for="inputNumeroParticipantes">Cantidad de Alumnos</label>
-                    <input type="text" class="form-control" name="inputNumeroParticipantes" id="inputNumeroParticipantes">
+                    <input type="text" class="form-control" name="inputNumeroParticipantes" [(ngModel)]="temp_grupo.cantidadAlumnos">
                 </div>
             </div>
         </div>
@@ -26,7 +26,10 @@
                 <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/grupos']" style="width: 100%;">Regresar</button>
             </div>
             <div class="col-lg-10 text-right">
-                <button type="button" name="" id="" class="btn btnAceptar" style="width: 100%;">Finalizar</button>
+                <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="create()" *ngIf="!temp_grupo.id;else tmpUpdate">Finalizar</button>
+                <ng-template #tmpUpdate>
+                    <button role="button" class="btn btnAceptar" style="width: 100%;">Finalizar</button>
+                </ng-template>
             </div>
         </div>
     </form>

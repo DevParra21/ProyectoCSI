@@ -18,14 +18,14 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="form-group">
-                    <label for="inputEmpleado">Clave de Materia</label>
-                    <input type="text" class="form-control" name="inputEmpleado" id="inputEmpleado">
+                    <label for="inputClaveMateria">Clave de Materia</label>
+                    <input type="text" class="form-control" name="inputClaveMateria" [(ngModel)]="temp_materia.claveMateria">
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="form-group">
-                    <label for="inputUsuario">Nombre de Materia</label>
-                    <input type="text" class="form-control" name="inputUsuario" id="inputUsuario">
+                    <label for="inputNombre">Nombre de Materia</label>
+                    <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_materia.nombreMateria">
                 </div>
             </div>
         </div>
@@ -34,7 +34,10 @@
                 <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/materias']" style="width: 100%;">Regresar</button>
             </div>
             <div class="col-lg-10 text-right">
-                <button type="button" name="" id="" class="btn btnAceptar" style="width: 100%;">Finalizar</button>
+                <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="create()" *ngIf="!temp_materia.id;else tmpUpdate">Finalizar Registro</button>
+                <ng-template #tmpUpdate>
+                    <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="update()">Finalizar Modificación</button>
+                </ng-template>
             </div>
         </div>
     </form>

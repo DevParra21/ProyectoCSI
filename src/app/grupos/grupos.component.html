@@ -24,6 +24,7 @@
                 <th>Grupo</th>
                 <th>Clave de Materia</th>
                 <th>Nombre</th>
+                <th>Cupo</th>
                 <th>Estatus</th>
                 <th class="text-center">Modificar</th>
                 <th class="text-center">Eliminar</th>
@@ -34,8 +35,10 @@
                     <td scope="row">{{item.id}}</td>
                     <td>{{item.materia.claveMateria}}</td>
                     <td><i>{{item.materia.nombreMateria}}</i></td>
+                    <td>{{item.cantidadAlumnos}}</td>
                     <td>{{item.estatusGrupo.nombreEstatus}}</td>
-                    <td class="text-center" style="border-left-style: solid;"><button class="btn btn-primary">Modificar</button></td>
+                    <td class="text-center" style="border-left-style: solid;"><button type="button" name="button" [routerLink]="['modifica-grupo', item.id]"
+                    routerLinkActive="router-link-active" class="btn btn-primary">Modificar</button></td>
                     <td class="text-center"><button class="btn btn-danger">Eliminar</button></td>
                 </tr>
             </tbody>
@@ -45,7 +48,7 @@
             <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/principal']" style="width: 100%;">Regresar</button>
         </div>
         <div class="col-lg-10 text-right">
-            <button type="button" name="" id="" class="btn btnAceptar" [routerLink]="['/registra-grupo']" style="width: 100%;">Registrar nuevo Grupo</button>
+            <button type="button" name="" id="" class="btn btnAceptar" [routerLink]="['/grupos/registra-grupo']" style="width: 100%;">Registrar nuevo Grupo</button>
         </div>
     </div>
 </div>
