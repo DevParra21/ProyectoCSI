@@ -1,16 +1,8 @@
+import { Usuario } from '../catalogos/catalogos';
+
 export class Alumno {
     matricula:number;
-    usuario:{
-        estatus:{
-            id:number;
-            nombre:string;
-        };
-        nombre:string;
-        apellidoPaterno:string;
-        apellidoMaterno:string;
-        nombreUsuario:string;
-        contrasenia:string;
-    };
+    usuario:Usuario;
 }
 
 export class AlumnoRegistro{

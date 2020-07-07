@@ -13,6 +13,11 @@ body{
     color: white !important;
 }
 
+.btnAceptar:disabled{
+    background-color: royalblue;
+    cursor: not-allowed;
+}
+
 .btnCancelar{
    background-color: #FBC43D !important;
    color: white !important;
@@ -21,4 +26,14 @@ body{
 .btnCancelar:hover{
     background-color: #f3722c !important;
     color:white !important;
+}
+
+input[type="text"]:disabled{
+    color: rgb(143, 143, 143);
+}
+
+.errorMsj{
+    color:  #FBC43D;
+    float: left;
+    margin-bottom: 1.5em;
 }

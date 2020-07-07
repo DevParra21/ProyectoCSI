@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Alumno } from './alumno'
 import { AlumnoService } from './alumno.service';
+import { NgxSpinnerService} from 'ngx-spinner';
 
 
 @Component({
@@ -13,11 +14,17 @@ export class AlumnosComponent implements OnInit {
  
   alumnos: Alumno[];
 
-  constructor(private alumnoService: AlumnoService) { }
+  constructor(private alumnoService: AlumnoService, private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.alumnoService.getAlumnos().subscribe(res => this.alumnos =  res );
+    this.spinner.show();
     
+    this.alumnoService.getAlumnos().subscribe(res => this.alumnos =  res );
+
+
+    setTimeout(_=>{
+      this.spinner.hide();
+    },1000);
   }
 
   delete(alumno:Alumno):void{
@@ -37,11 +44,9 @@ export class AlumnosComponent implements OnInit {
             'Alumno Eliminado',
             'El registro ha sido eliminado correctamente.',
             'success'
-          )
-        })
+          );
+        });
       }
-    })
+    });
   }
-
-  
 }

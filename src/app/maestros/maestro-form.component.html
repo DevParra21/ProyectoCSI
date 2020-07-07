@@ -8,9 +8,7 @@
                 <div class="form-group">
                     <label for="inputEstatus">Estatus</label>
                     <select class="form-control" name="inputEstatus" id="inputEstatus">
-                        <option>Seleccione...</option>
-                        <option>Activo</option>
-                        <option>Inactivo</option>
+                        <option *ngFor="let item of estatusUsuario" value={{item.id}}>{{item.nombre}}</option>
                     </select>
                 </div>
             </div>
@@ -18,9 +16,7 @@
                 <div class="form-group">
                     <label for="inputTipo">Tipo</label>
                     <select class="form-control" name="inputTipo" id="inputTipo">
-                        <option>Seleccione...</option>
-                        <option>Planta</option>
-                        <option>Temporal</option>
+                        <option *ngFor="let item of tipoMaestro" value={{item.id}}>{{item.tipoNombre}}</option>
                     </select>
                 </div>
             </div>

@@ -1,15 +1,15 @@
+<ngx-spinner></ngx-spinner>
 <div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
     <h1 class="display-5">Registro de nuevo Alumno</h1>
     <p class="lead">Formulario para dar de alta nuevo alumno</p>
     <hr class="my-2">
-    <form>
+    <form #alumnoForm="ngForm">
         <div class="row">
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputEstatus">Estatus</label>
                     <select class="form-control" name="inputEstatus" id="inputEstatus">
-                        <option>Activo</option>
-                        <option>Inactivo</option>
+                        <option *ngFor="let item of estatusUsuario" value={{item.id}}>{{item.nombre}}</option>
                     </select>
                 </div>
             </div>
@@ -18,19 +18,37 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputMatricula">Matrícula</label>
-                    <input type="text" class="form-control" name="inputMatricula" [(ngModel)]="temp_alumno.matricula" [disabled]="this.modificacion">
+                    <input type="text" class="form-control" name="inputMatricula" [(ngModel)]="temp_alumno.matricula" [disabled]="this.modificacion" required minlength="7" maxlength="7" #inputMatricula="ngModel">
+                    <div *ngIf="inputMatricula.invalid && (inputMatricula.dirty || inputMatricula.touched)">
+                        <div *ngIf="inputMatricula.errors.minlength">
+                            <small class="errorMsj">Matrícula debe tener 7 caracteres</small>
+                        </div>
+                        <div *ngIf="inputMatricula.errors.required">
+                            <small class="errorMsj">Matrícula debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="form-group">
                     <label for="inputUsuario">Nombre de Usuario</label>
-                    <input type="text" class="form-control" name="inputUsuario" [(ngModel)]="temp_alumno.usuario.nombreUsuario">
+                    <input type="text" class="form-control" name="inputUsuario" [(ngModel)]="temp_alumno.usuario.nombreUsuario" required minlength="1" maxlength="10" #inputNombreUsuario="ngModel">
+                    <div *ngIf="inputNombreUsuario.invalid && (inputNombreUsuario.dirty || inputNombreUsuario.touched)">
+                        <div *ngIf="inputNombreUsuario.errors.required">
+                            <small class="errorMsj">Nombre de Usuario debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                     <label for="inputContrasenia">Contraseña</label>
-                    <input type="password" class="form-control" name="inputContrasenia" [(ngModel)]="temp_alumno.usuario.contrasenia">
+                    <input type="password" class="form-control" name="inputContrasenia" [(ngModel)]="temp_alumno.usuario.contrasenia" required minlength="8" maxlength="25" #inputContrasenia="ngModel">
+                    <div *ngIf="inputContrasenia.invalid && (inputContrasenia.dirty || inputContrasenia.touched)">
+                        <div *ngIf="inputContrasenia.errors.required">
+                            <small class="errorMsj">Contraseña debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,19 +56,34 @@
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputNombre">Nombre</label>
-                  <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_alumno.usuario.nombre">
+                  <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_alumno.usuario.nombre" required maxlength="25" #inputNombre="ngModel">
+                  <div *ngIf="inputNombre.invalid && (inputNombre.dirty || inputNombre.touched)">
+                    <div *ngIf="inputNombre.errors.required">
+                        <small class="errorMsj">Nombre debe contener información</small>
+                    </div>
+                </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputApPaterno">Apellido Paterno</label>
-                  <input type="text" class="form-control" name="inputApPaterno" [(ngModel)]="temp_alumno.usuario.apellidoPaterno">
+                  <input type="text" class="form-control" name="inputApPaterno" [(ngModel)]="temp_alumno.usuario.apellidoPaterno" required maxlength="25" #inputApPaterno="ngModel">
+                  <div *ngIf="inputApPaterno.invalid && (inputApPaterno.dirty || inputApPaterno.touched)">
+                    <div *ngIf="inputApPaterno.errors.required">
+                        <small class="errorMsj">Apellido Paterno debe contener información</small>
+                    </div>
+                </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                  <label for="inputApMaterno">Apellido Materno</label>
-                  <input type="text" class="form-control" name="inputApMaterno" [(ngModel)]="temp_alumno.usuario.apellidoMaterno">
+                    <label for="inputApMaterno">Apellido Materno</label>
+                    <input type="text" class="form-control" name="inputApMaterno" [(ngModel)]="temp_alumno.usuario.apellidoMaterno" required maxlength="25" #inputApMaterno="ngModel">
+                    <div *ngIf="inputApMaterno.invalid && (inputApMaterno.dirty || inputApMaterno.touched)">
+                        <div *ngIf="inputApMaterno.errors.required">
+                            <small class="errorMsj">Apellido Materno debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

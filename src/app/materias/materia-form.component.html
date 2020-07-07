@@ -1,16 +1,15 @@
+<ngx-spinner></ngx-spinner>
 <div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
     <h1 class="display-5">Registro de nuevo Maestro</h1>
     <p class="lead">Formulario para dar de alta nuevo maestro</p>
     <hr class="my-2">
-    <form>
+    <form #materiaForm="ngForm">
         <div class="row">
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputEstatus">Estatus</label>
                     <select class="form-control" name="inputEstatus" id="inputEstatus">
-                        <option>Seleccione...</option>
-                        <option>Activo</option>
-                        <option>Inactivo</option>
+                        <option *ngFor="let item of estatusMaterias" value={{item.id}}>{{item.nombreEstatus}}</option>
                     </select>
                 </div>
             </div>
@@ -19,13 +18,26 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputClaveMateria">Clave de Materia</label>
-                    <input type="text" class="form-control" name="inputClaveMateria" [(ngModel)]="temp_materia.claveMateria">
+                    <input type="text" class="form-control" name="inputClaveMateria" [(ngModel)]="temp_materia.claveMateria" required minlength="3" maxlength="3" #inputClave="ngModel">
+                    <div *ngIf="inputClave.invalid && (inputClave.dirty || inputClave.touched)">
+                        <div *ngIf="inputClave.errors.required">
+                            <small class="errorMsj">Clave de Materia debe contener información</small>
+                        </div>
+                        <div *ngIf="inputClave.errors.minlength">
+                            <small class="errorMsj">Clave de Materia debe contener tres dígitos.</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="form-group">
                     <label for="inputNombre">Nombre de Materia</label>
-                    <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_materia.nombreMateria">
+                    <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_materia.nombreMateria" required maxlength="100" #inputNombre="ngModel">
+                    <div *ngIf="inputNombre.invalid && (inputNombre.dirty || inputNombre.touched)">
+                        <div *ngIf="inputNombre.errors.required">
+                            <small class="errorMsj">Nombre de Materia debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,7 +46,7 @@
                 <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/materias']" style="width: 100%;">Regresar</button>
             </div>
             <div class="col-lg-10 text-right">
-                <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="create()" *ngIf="!temp_materia.id;else tmpUpdate">Finalizar Registro</button>
+                <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="create()" *ngIf="!temp_materia.id;else tmpUpdate" [disabled]="!materiaForm.form.valid">Finalizar Registro</button>
                 <ng-template #tmpUpdate>
                     <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="update()">Finalizar Modificación</button>
                 </ng-template>

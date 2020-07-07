@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Grupo } from './grupo';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +17,7 @@ export class GrupoService {
   private httpHeaders:HttpHeaders = new HttpHeaders({
     'Content-type':'application/json'
   });
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   getGrupos():Observable<Grupo[]>{
     return this.http.get(this.get_urlEndpoint).pipe(
@@ -24,8 +26,12 @@ export class GrupoService {
   }
 
   getGrupo(id:number):Observable<Grupo>{
-    return this.http.get(`${this.get_urlEndpoint}/${id}`).pipe(
-      map(response => response as Grupo)
+    return this.http.get<Grupo>(`${this.get_urlEndpoint}/${id}`).pipe(
+      catchError(e=>{
+        this.router.navigate(['/grupos']);
+        Swal.fire('Error', e.error.mensaje,'error');
+        return throwError(e);
+      })
     );
   }
 

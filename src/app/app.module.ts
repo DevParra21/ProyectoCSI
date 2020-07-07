@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -70,6 +71,7 @@ const routes: Routes = [
     NgbModule,
     HttpClientModule,
     FormsModule,
+    NgxSpinnerModule,
     RouterModule.forRoot(routes)
     ],
   providers: [
