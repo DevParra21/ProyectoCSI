@@ -8,16 +8,16 @@ export class Usuario{
 }
 
 export class EstatusUsuario {
-    id:string;
+    id:number;
     nombre:string;
 }
 
 export class EstatusMateria{
-    id:string;
+    id:number;
     nombreEstatus:string;
 }
 
-export class TipoMaestro{
-    id:string;
+export class TipoProfesor{
+    id:number;
     tipoNombre:string;
 }

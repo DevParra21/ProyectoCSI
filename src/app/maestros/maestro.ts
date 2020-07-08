@@ -1,7 +1,7 @@
-import {Usuario, TipoMaestro} from '../catalogos/catalogos';
+import {Usuario, TipoProfesor} from '../catalogos/catalogos';
 
 export class Maestro {
     numeroEmpleado:number;
     usuario:Usuario;
-    tipoMaestro:TipoMaestro;
+    tipoProfesor:TipoProfesor;
 }

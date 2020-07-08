@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Maestro } from './maestro';
 import { MaestroService } from './maestro.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-maestros',
   templateUrl: './maestros.component.html',
@@ -11,10 +12,19 @@ export class MaestrosComponent implements OnInit {
 
   maestros:Maestro[];
   
-  constructor(private maestroService:MaestroService) { }
+  constructor(private maestroService:MaestroService, private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.maestroService.getMaestros().subscribe( res => this.maestros = res );
+    this.spinner.show();
+
+    this.maestroService.getMaestros().subscribe( res => {
+      this.maestros = res;
+      // console.log(res);
+    });
+
+    setTimeout(_=>{
+      this.spinner.hide();
+    },1000);
   }
 
   delete(maestro:Maestro):void{
@@ -34,9 +44,9 @@ export class MaestrosComponent implements OnInit {
             'Maestro Eliminado',
             'El registro ha sido eliminado correctamente.',
             'success'
-          )
-        })
+          );
+        });
       }
-    })
+    });
   }
 }

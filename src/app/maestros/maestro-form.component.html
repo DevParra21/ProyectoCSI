@@ -2,21 +2,23 @@
     <h1 class="display-5">Registro de nuevo Maestro</h1>
     <p class="lead">Formulario para dar de alta nuevo maestro</p>
     <hr class="my-2">
-    <form>
+    <form #maestroForm="ngForm">
         <div class="row">
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputEstatus">Estatus</label>
-                    <select class="form-control" name="inputEstatus" id="inputEstatus">
-                        <option *ngFor="let item of estatusUsuario" value={{item.id}}>{{item.nombre}}</option>
+                    <select [compareWith]="compararEstatus" class="form-control" name="inputEstatus" id="inputEstatus" [(ngModel)]="temp_maestro.usuario.estatus">
+                        <option [ngValue]="undefined">Seleccione un estatus...</option>
+                        <option *ngFor="let item of estatusUsuario" [ngValue]="item">{{item.nombre}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
-                    <label for="inputTipo">Tipo</label>
-                    <select class="form-control" name="inputTipo" id="inputTipo">
-                        <option *ngFor="let item of tipoMaestro" value={{item.id}}>{{item.tipoNombre}}</option>
+                    <label for="inputTipo">Tipo de Maestro</label>
+                    <select [compareWith]="compararTipos" class="form-control" name="inputTipo" id="inputTipo" [(ngModel)]="temp_maestro.tipoProfesor">
+                        <option [ngValue]="undefined">Seleccione un tipo...</option>
+                        <option *ngFor="let item of tipoProfesor" [ngValue]="item">{{item.tipoNombre}}</option>
                     </select>
                 </div>
             </div>
@@ -25,19 +27,37 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputEmpleado">No. Empleado</label>
-                    <input type="text" class="form-control" name="inputEmpleado" [(ngModel)]="temp_maestro.numeroEmpleado" [disabled]="this.esModificacion">
+                    <input type="text" class="form-control" name="inputEmpleado" [(ngModel)]="temp_maestro.numeroEmpleado" [disabled]="this.esModificacion" #inputNoEmpleado="ngModel" minlength="5" maxlength="7" required>
+                    <div *ngIf="inputNoEmpleado.invalid && (inputNoEmpleado.dirty || inputNoEmpleado.touched)">
+                        <div *ngIf="inputNoEmpleado.errors.minlength">
+                            <small class="errorMsj">Número de Empleado debe tener entre 5 y 7 caracteres</small>
+                        </div>
+                        <div *ngIf="inputNoEmpleado.errors.required">
+                            <small class="errorMsj">Número de Empleado debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="form-group">
                     <label for="inputUsuario">Nombre de Usuario</label>
-                    <input type="text" class="form-control" name="inputUsuario" [(ngModel)]="temp_maestro.usuario.nombreUsuario">
+                    <input type="text" class="form-control" name="inputUsuario" [(ngModel)]="temp_maestro.usuario.nombreUsuario" #inputNombreUsuario = "ngModel" maxlength="10" required>
+                    <div *ngIf="inputNombreUsuario.invalid && (inputNombreUsuario.dirty || inputNombreUsuario.touched)">
+                        <div *ngIf="inputNombreUsuario.errors.required">
+                            <small class="errorMsj">Nombre de Usuario debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                     <label for="inputContrasenia">Contraseña</label>
-                    <input type="text" class="form-control" name="inputContrasenia" [(ngModel)]="temp_maestro.usuario.contrasenia">
+                    <input type="text" class="form-control" name="inputContrasenia" [(ngModel)]="temp_maestro.usuario.contrasenia" #inputContrasenia="ngModel" maxlength="25" required>
+                    <div *ngIf="inputContrasenia.invalid && (inputContrasenia.dirty || inputContrasenia.touched)">
+                        <div *ngIf="inputContrasenia.errors.required">
+                            <small class="errorMsj">Contraseña debe contener información</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,19 +65,34 @@
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputNombre">Nombre</label>
-                  <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_maestro.usuario.nombre">
+                  <input type="text" class="form-control" name="inputNombre" [(ngModel)]="temp_maestro.usuario.nombre" #inputNombre="ngModel" maxlength="25" required>
+                  <div *ngIf="inputNombre.invalid && (inputNombre.dirty || inputNombre.touched)">
+                    <div *ngIf="inputNombre.errors.required">
+                        <small class="errorMsj">Nombre debe contener información</small>
+                    </div>
+                </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputApPaterno">Apellido Paterno</label>
-                  <input type="text" class="form-control" name="inputApPaterno" [(ngModel)]="temp_maestro.usuario.apellidoPaterno">
+                  <input type="text" class="form-control" name="inputApPaterno" [(ngModel)]="temp_maestro.usuario.apellidoPaterno" #inputApPaterno="ngModel" maxlength="25" required>
+                  <div *ngIf="inputApPaterno.invalid && (inputApPaterno.dirty || inputApPaterno.touched)">
+                    <div *ngIf="inputApPaterno.errors.required">
+                        <small class="errorMsj">Apellido Paterno debe contener información</small>
+                    </div>
+                </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                   <label for="inputApMaterno">Apellido Materno</label>
-                  <input type="text" class="form-control" name="inputApMaterno" [(ngModel)]="temp_maestro.usuario.apellidoMaterno">
+                  <input type="text" class="form-control" name="inputApMaterno" [(ngModel)]="temp_maestro.usuario.apellidoMaterno" #inputApMaterno="ngModel" maxlength="25" required>
+                  <div *ngIf="inputApMaterno.invalid && (inputApMaterno.dirty || inputApMaterno.touched)">
+                    <div *ngIf="inputApMaterno.errors.required">
+                        <small class="errorMsj">Apellido Materno debe contener información</small>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -66,9 +101,9 @@
                 <button type="button" name="" id="" class="btn btnCancelar" [routerLink]="['/maestros']" style="width: 100%;">Regresar</button>
             </div>
             <div class="col-lg-10 text-right">
-                <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="create()" *ngIf="!this.esModificacion;else tmpUpdate">Finalizar Registro</button>
+                <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="create()" *ngIf="!this.esModificacion;else tmpUpdate" [disabled]="!maestroForm.form.valid">Finalizar Registro</button>
                 <ng-template #tmpUpdate>
-                    <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="update()">Finalizar Modificación</button>
+                    <button role="button" class="btn btnAceptar" style="width: 100%;" (click)="update()" [disabled]="!maestroForm.form.valid">Finalizar Modificación</button>
                 </ng-template>
             </div>
         </div>

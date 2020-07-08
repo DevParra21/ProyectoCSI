@@ -5,12 +5,12 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 txt-blanco">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                <a *ngIf="this.inicioService.isAuthenticated()" class="nav-link" [routerLink]="['/principal']" routerLinkActive="router-link-active">Inicio<span class="sr-only">(current)</span></a>
             </li>
         </ul>
         
         <div>
-            <a [routerLink]="['/inicio']">Cerrar Sesión</a>
+            <a *ngIf="this.inicioService.isAuthenticated()" [routerLink]="['/inicio']" (click)="logout()">Cerrar Sesión</a>
         </div>
         <div class="text-white" style="margin-left: 20px;">
            <span>{{this.datetime}}</span>

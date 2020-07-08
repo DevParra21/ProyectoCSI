@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
     <h1 class="display-5">Maestros</h1>
     <p class="lead">Catálogo de Maestros inscritos</p>
@@ -42,7 +43,7 @@
                     <td scope="row">{{item.numeroEmpleado}}</td>
                     <td>{{item.usuario.nombreUsuario}}</td>
                     <td><i>{{item.usuario.nombre}} {{item.usuario.apellidoPaterno}} {{item.usuario.apellidoMaterno}}</i></td>
-                    <td>{{item.tipoProfesor.nombre}}</td>
+                    <td>{{item.tipoProfesor.tipoNombre}}</td>
                     <td>{{item.usuario.estatus.nombre}}</td>
                     <td class="text-center" style="border-left-style: solid;"><button type="button" name="button" class="btn btn-primary" [routerLink]="['modifica-maestro', item.numeroEmpleado]"
                     routerLinkActive="router-link-active">Modificar</button></td>

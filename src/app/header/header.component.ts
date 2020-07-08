@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DayTemplateContext } from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-day-template-context';
+import { InicioService } from '../inicio/inicio.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,8 @@ import { DayTemplateContext } from '@ng-bootstrap/ng-bootstrap/datepicker/datepi
 export class HeaderComponent implements OnInit {
   dt: Date = new Date();
   datetime: String = this.dt.toLocaleString();
-  constructor() {
-    
-   }
+  constructor(public inicioService:InicioService, private router:Router) {
+  }
 
   ngOnInit(): void {
     this.updateDateTime();
@@ -22,5 +22,10 @@ export class HeaderComponent implements OnInit {
       this.dt = new Date();
       this.datetime = this.dt.toLocaleString();
     },1000);
+  }
+
+  logout():void{
+    this.inicioService.logout();
+    this.router.navigate(['/inicio']);
   }
 }

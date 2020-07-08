@@ -20,17 +20,14 @@ export class AlumnoFormComponent implements OnInit {
   public estatusUsuario:EstatusUsuario[];
   
   public temp_alumno:Alumno={
-    matricula:0,
+    matricula:null,
     usuario:{
       apellidoMaterno:'',
       apellidoPaterno:'',
       nombre:'',
       nombreUsuario:'',
       contrasenia:'',
-      estatus:{
-        id:'',
-        nombre:''
-      }
+      estatus:undefined
     },
   };
 
@@ -76,8 +73,6 @@ export class AlumnoFormComponent implements OnInit {
   }
 
   public create(): void{
-    this.spinner.show();
-    this.AsignarEstatus();
     this.alumnoService.create(this.temp_alumno).subscribe(response =>{
       swal.fire('Alumno registrado', 
       'El nuevo registro ha sido dado de alta', 
@@ -85,27 +80,26 @@ export class AlumnoFormComponent implements OnInit {
         this.router.navigate(['/alumnos']);
       });
     });
-    this.spinner.hide();
   }
 
   public update():void{
-    this.spinner.show();
     this.alumnoService.update(this.temp_alumno).subscribe(response =>{
       swal.fire('Alumno modificado',
         'El registro ha sido modificado',
         'success').then(_=>{
-          this.spinner.hide();
           this.router.navigate(['/alumnos']);
         });
     });
   }
 
-  private AsignarEstatus():void{
-    var e = (document.getElementById("inputEstatus")) as HTMLSelectElement;
-    var sel = e.selectedIndex;
-    var opt = e.options[sel];
-    this.temp_alumno.usuario.estatus.id=opt.value;
-    this.temp_alumno.usuario.estatus.nombre = opt.text;
+  public compararEstatus(est1:EstatusUsuario, est2:EstatusUsuario):boolean{
+    if(est1 === undefined && est2 === undefined){
+      console.log("entró undefined");
+      return true;
+    }
+
+    console.log("no entró undefined");
+    return est1==null || est2==null ? false : est1.id===est2.id;
   }
 
 }

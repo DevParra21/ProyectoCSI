@@ -5,7 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { EstatusUsuario, TipoMaestro } from '../catalogos/catalogos';
+import { EstatusUsuario, TipoProfesor } from '../catalogos/catalogos';
+import { InicioService } from '../inicio/inicio.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,46 +22,62 @@ export class MaestroService {
     'Content-type':'application/json'
   });
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient, private router:Router, private inicioService:InicioService) { }
+
+  private addAuthHeaders(){
+    let token = this.inicioService.token;
+    if(token!=null){
+      return this.httpHeaders.append('Authorization','Bearer ' + token);
+    }
+    else
+      return this.httpHeaders;
+  }
 
   getMaestros(): Observable<Maestro[]>{
-    return this.http.get(this.get_urlEndpoint).pipe(
-      map(response => response as Maestro[])
+    return this.http.get<Maestro[]>(this.get_urlEndpoint, {headers:this.addAuthHeaders()}).pipe(
+      catchError(e =>{
+        Swal.fire('Error',e.error.error, 'error');
+        this.router.navigate(['/principal']);
+        return throwError(e);
+      })
     );
   }
 
   getMaestro(id:number): Observable<Maestro>{
-    return this.http.get<Maestro>(`${this.get_urlEndpoint}/${id}`).pipe(
+    return this.http.get<Maestro>(`${this.get_urlEndpoint}/${id}`,{headers:this.addAuthHeaders()}).pipe(
       catchError(e =>{
-        this.router.navigate(['/maestros']);
-        Swal.fire('Error',e.error.mensaje, 'error');
+        Swal.fire('Error',e.error.error, 'error');
+        this.router.navigate(['/principal']);
         return throwError(e);
       })
     );
   }
 
   create(maestro:Maestro):Observable<Maestro>{
-    return this.http.post<Maestro>(this.post_urlEndpoint, maestro, {headers: this.httpHeaders}).pipe(
-      catchError(e=>{
+    return this.http.post<Maestro>(this.post_urlEndpoint, maestro, {headers:this.addAuthHeaders()}).pipe(
+      catchError(e =>{
         Swal.fire('Error',e.error.mensaje, 'error');
+        this.router.navigate(['/principal']);
         return throwError(e);
       })
     )
   }
   
   update(maestro:Maestro):Observable<Maestro>{
-    return this.http.put<Maestro>(`${this.put_urlEndpoint}/${maestro.numeroEmpleado}`,maestro,{headers:this.httpHeaders}).pipe(
-      catchError(e=>{
-        Swal.fire('Error',e.error.mensaje,'error');
+    return this.http.put<Maestro>(`${this.put_urlEndpoint}/${maestro.numeroEmpleado}`,maestro,{headers:this.addAuthHeaders()}).pipe(
+      catchError(e =>{
+        Swal.fire('Error',e.error.mensaje, 'error');
+        this.router.navigate(['/principal']);
         return throwError(e);
       })
     );
   }
 
   delete(numeroEmpleado:number):Observable<Maestro>{
-    return this.http.delete<Maestro>(`${this.delete_urlEndpoint}/${numeroEmpleado}`,{headers:this.httpHeaders}).pipe(
-      catchError(e=>{
-        Swal.fire('Error', e.error.mensaje);
+    return this.http.delete<Maestro>(`${this.delete_urlEndpoint}/${numeroEmpleado}`,{headers:this.addAuthHeaders()}).pipe(
+      catchError(e =>{
+        Swal.fire('Error',e.error.mensaje, 'error');
+        this.router.navigate(['/principal']);
         return throwError(e);
       })
     );
@@ -70,7 +87,7 @@ export class MaestroService {
     return this.http.get<EstatusUsuario[]>(this.estatus_urlEndpoint,{headers:this.httpHeaders});
   }
 
-  getTipo():Observable<TipoMaestro[]>{
-    return this.http.get<TipoMaestro[]>(this.tipo_urlEndpoint,{headers:this.httpHeaders});
+  getTipo():Observable<TipoProfesor[]>{
+    return this.http.get<TipoProfesor[]>(this.tipo_urlEndpoint,{headers:this.httpHeaders});
   }
 }

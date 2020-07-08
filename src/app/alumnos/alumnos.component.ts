@@ -13,6 +13,11 @@ import { NgxSpinnerService} from 'ngx-spinner';
 export class AlumnosComponent implements OnInit {
  
   alumnos: Alumno[];
+  busqueda:string;
+
+  buscar():void{
+    console.log(this.busqueda);
+  }
 
   constructor(private alumnoService: AlumnoService, private spinner:NgxSpinnerService) { }
 

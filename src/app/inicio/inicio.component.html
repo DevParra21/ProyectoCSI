@@ -1,24 +1,27 @@
+<ngx-spinner></ngx-spinner>
 <div style="margin-top: 10%;">
     <div class="card text-white">
       <div class="card-body">
         <h4 class="card-title">Bienvenido al sistema de inscripciones de UANL</h4>
         <hr>
-        <div class="form-group">
-          <label for="nombreUsuario">Nombre de Usuario</label>
-          <input type="text" class="form-control form-control-sm" name="nombreUsuario" id="nombreUsuario" maxlength="10">
-        </div>
-        <div class="form-group">
-          <label for="contraseniaUsuario">Contraseña</label>
-          <input type="password" class="form-control form-control-sm" name="contraseniaUsuario" id="contraseniaUsuario" maxlength="25">
-        </div>
-        <div class="row d-flex">
-            <div class="col-lg-7">
-                <button type="button" name="btnInicioSesion" id="btnInicioSesion" class="btn" [routerLink]="['/principal']">Iniciar Sesion</button>
-            </div>
-            <div class="col-lg-4 text-center">
-               <small>Si aún no estás registrado, ponte en contacto con Control Escolar para generar tu usuario.</small>
-            </div>
-        </div>
+        <form method="POST">
+          <div class="form-group">
+            <label for="nombreUsuario">Nombre de Usuario</label>
+            <input [(ngModel)]="this.user.nombreUsuario" type="text" class="form-control form-control-sm" name="nombreUsuario" id="nombreUsuario" maxlength="10" autofocus required>
+          </div>
+          <div class="form-group">
+            <label for="contraseniaUsuario">Contraseña</label>
+            <input [(ngModel)]="this.user.contrasenia" type="password" class="form-control form-control-sm" name="contraseniaUsuario" id="contraseniaUsuario" maxlength="25" required>
+          </div>
+          <div class="row d-flex">
+              <div class="col-lg-7">
+                  <button type="button" name="btnInicioSesion" id="btnInicioSesion" class="btn" (click)="login()">Iniciar Sesion</button>
+              </div>
+              <div class="col-lg-4 text-center">
+                <small>Si aún no estás registrado, ponte en contacto con Control Escolar para generar tu usuario.</small>
+              </div>
+          </div>
+      </form>
       </div>
     </div>
 </div>

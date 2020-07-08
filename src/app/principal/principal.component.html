@@ -1,14 +1,14 @@
 <div class="jumbotron mt-5 text-white" style="background-color: #05396E; padding: 30px;">
-    <h1 class="display-5">Bienvenido, Usuario</h1>
+    <h1 class="display-5">Bienvenido, {{this.usuario.nombreUsuario}}</h1>
     <p class="lead">¿Qué deseas hacer esta tarde?</p>
     <hr class="my-2">
     <div class="row mb-5">
-        <div class="col-lg-4">
+        <div class="col-lg-4" *ngIf="this.usuario.rol=='ROLE_ALUMNI'">
             <div>
                 <a [routerLink]="['/inscripcion']">Inscribir Materias</a>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4" *ngIf="this.usuario.rol == 'ROLE_ADMIN'">
             <div>
                 <a [routerLink]="['/maestros']">Ver Catálogo de Maestros</a>
             </div>
@@ -16,7 +16,7 @@
                 <a [routerLink]="['/alumnos']">Ver Catálogo de Alumnos</a>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4" *ngIf="this.usuario.rol == 'ROLE_PROFFESOR'">
             <div>
                 <a [routerLink]="['/materias']">Ver Catálogo de Materias</a>
             </div>

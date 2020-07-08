@@ -4,7 +4,7 @@ import { Maestro } from './maestro';
 import { MaestroService } from './maestro.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { EstatusUsuario, TipoMaestro } from '../catalogos/catalogos';
+import { EstatusUsuario, TipoProfesor } from '../catalogos/catalogos';
 
 @Component({
   selector: 'app-maestro-form',
@@ -15,24 +15,18 @@ export class MaestroFormComponent implements OnInit {
 
   public esModificacion:boolean=false;
   public estatusUsuario:EstatusUsuario[];
-  public tipoMaestro:TipoMaestro[];
+  public tipoProfesor:TipoProfesor[];
   public temp_maestro:Maestro={
-    numeroEmpleado:0,
+    numeroEmpleado:null,
     usuario:{
       nombre:'',
       apellidoPaterno:'',
       apellidoMaterno:'',
       nombreUsuario:'',
       contrasenia:'',
-      estatus:{
-        id:'',
-        nombre:''
-      }
+      estatus:undefined
     },
-    tipoMaestro:{
-      id:'',
-      tipoNombre:''
-    }
+    tipoProfesor:undefined
   }
 
   constructor(private maestroService:MaestroService, private router:Router, private activatedRoute:ActivatedRoute, private spinner:NgxSpinnerService) { }
@@ -40,8 +34,8 @@ export class MaestroFormComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
     this.obtenerMaestro();
-    this.obtenerEstatus();
     this.obtenerTipo();
+    this.obtenerEstatus();
     setTimeout(_=>{
       this.spinner.hide();
     },1500);
@@ -55,28 +49,13 @@ export class MaestroFormComponent implements OnInit {
 
   public obtenerTipo():void{
     this.maestroService.getTipo().subscribe(res =>{
-      this.tipoMaestro = res;
+      console.log("obtenerTipo()");
+      console.log(res);
+      this.tipoProfesor = res;
     });
   }
 
-  private AsignarEstatus():void{
-    var e = (document.getElementById("inputEstatus")) as HTMLSelectElement;
-    var sel = e.selectedIndex;
-    var opt = e.options[sel];
-    this.temp_maestro.usuario.estatus.id=opt.value;
-    this.temp_maestro.usuario.estatus.nombre = opt.text;
-  }
-  private AsignarTipo():void{
-    var e = (document.getElementById("inputTipo")) as HTMLSelectElement;
-    var sel = e.selectedIndex;
-    var opt = e.options[sel];
-    this.temp_maestro.tipoMaestro.id=opt.value;
-    this.temp_maestro.tipoMaestro.tipoNombre = opt.text;
-  }
-  //TODO: ver porqué está fallando el registro. (create)
   public create(): void{
-    this.AsignarEstatus();
-    this.AsignarTipo();
     this.maestroService.create(this.temp_maestro).subscribe(response =>{
       Swal.fire('Maestro registrado','los datos han sido guardados', 'success').then(_=>{
         this.router.navigate(['/maestros']);
@@ -104,6 +83,20 @@ export class MaestroFormComponent implements OnInit {
         console.log('numero empleado nulo');
       }
     })
+  }
+
+  public compararEstatus(est1:EstatusUsuario, est2:EstatusUsuario){
+    if(est1 === undefined && est2 === undefined){
+      return true;
+    }
+    return est1==null || est2 == null ? false : est1.id === est2.id;
+  }
+
+  public compararTipos(tipo1:TipoProfesor, tipo2:TipoProfesor){
+    if(tipo1 === undefined && tipo2 === undefined){
+      return true;
+    }
+    return tipo1==null || tipo2 == null  ? false : tipo1.id === tipo2.id;
   }
 
 }

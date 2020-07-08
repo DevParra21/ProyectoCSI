@@ -8,8 +8,9 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="inputEstatus">Estatus</label>
-                    <select class="form-control" name="inputEstatus" id="inputEstatus">
-                        <option *ngFor="let item of estatusUsuario" value={{item.id}}>{{item.nombre}}</option>
+                    <select [compareWith]="compararEstatus" class="form-control" name="inputEstatus" id="inputEstatus" [(ngModel)]="temp_alumno.usuario.estatus">
+                        <option [ngValue]="undefined">Seleccione un estatus...</option>
+                        <option *ngFor="let item of estatusUsuario" [ngValue]="item">{{item.nombre}}</option>
                     </select>
                 </div>
             </div>

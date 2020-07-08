@@ -2,15 +2,14 @@
     <h1 class="display-5">Registro de nuevo Maestro</h1>
     <p class="lead">Formulario para dar de alta nuevo maestro</p>
     <hr class="my-2">
-    <form>
+    <form #grupoForm="ngForm">
         <div class="row">
             <div class="col-lg-7">
                 <div class="form-group">
                     <label for="inputMateria">Materia</label>
-                    <select class="form-control" name="inputMateria" id="inputMateria">
-                        <option>Seleccione...</option>
-                        <option>A01 - Diseño y Composición de Fotografía</option>
-                        <option>F25 - Estadística y Algoritmos</option>
+                    <select [compareWith]="compararMaterias" class="form-control" name="inputMateria" id="inputMateria" [(ngModel)]="temp_grupo.materia">
+                        <option [ngValue]="undefined">Seleccione...</option>
+                        <option *ngFor="let item of materias" [ngValue]="item">{{item.claveMateria}} - {{item.nombreMateria}}</option>
                     </select>
                 </div>
             </div>

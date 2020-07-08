@@ -15,13 +15,10 @@ export class MateriaFormComponent implements OnInit {
 
   public estatusMaterias:EstatusMateria[];
   public temp_materia:Materia={
-    id:0,
+    id:null,
     claveMateria:'',
     nombreMateria:'',
-    estatusMateria:{
-      id:'',
-      nombreEstatus:''
-    }
+    estatusMateria:undefined
   }
 
   constructor(private materiaService:MateriaService, private router:Router, private activatedRoute:ActivatedRoute, private spinner:NgxSpinnerService) { }
@@ -33,11 +30,10 @@ export class MateriaFormComponent implements OnInit {
     
     setTimeout(_=>{
       this.spinner.hide();
-    },1500);
+    },1000);
   }
 
   public create():void{
-    this.AsignarEstatus();
     this.materiaService.create(this.temp_materia).subscribe(response =>{
       Swal.fire('Registro de Materia','La Materia se ha registrado correctamente', 'success').then(_=>{
         this.router.navigate(['/materias']);
@@ -71,11 +67,13 @@ export class MateriaFormComponent implements OnInit {
     });
   }
 
-  private AsignarEstatus():void{
-    var e = (document.getElementById("inputEstatus")) as HTMLSelectElement;
-    var sel = e.selectedIndex;
-    var opt = e.options[sel];
-    this.temp_materia.estatusMateria.id=opt.value;
-    this.temp_materia.estatusMateria.nombreEstatus = opt.text;
+  public compararEstatus(est1:EstatusMateria, est2:EstatusMateria):boolean{
+    console.log("comparacion");
+    if(est1===undefined && est2===undefined){
+      console.log("sí entró");
+      return true;
+    }
+    console.log("no entró");
+    return est1==null || est2==null ? false : est1.id === est2.id;
   }
 }

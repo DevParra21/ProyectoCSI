@@ -3,22 +3,24 @@
     <h1 class="display-5">Alumnos</h1>
     <p class="lead">Catálogo de alumnos inscritos</p>
     <hr class="my-2">
+    <form #searchForm="ngForm">
     <div class="row mb-2">
-        <div class="col-lg-8 text-center">
-            <input class="form-control" type="text" placeholder="Buscar Alumno..." aria-label="Search">
+            <div class="col-lg-8 text-center">
+                <input class="form-control" type="text" placeholder="Buscar Alumno..." aria-label="Search" [(ngModel)]="this.busqueda" name="filtro">
+            </div>
+            <div class="col-lg-2">
+                <select name="filtro" id="filtro" class="form-control">
+                    <option value="1">Matrícula</option>
+                    <option value="2">Usuario</option>
+                    <option value="3">Nombre</option>
+                    <option value="4">Estatus</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btnAceptar" style="width: 100%;" (click)="this.buscar()">Buscar</button>
+            </div>
         </div>
-        <div class="col-lg-2">
-            <select name="filtro" id="filtro" class="form-control">
-                <option value="1">Matrícula</option>
-                <option value="2">Usuario</option>
-                <option value="3">Nombre</option>
-                <option value="4">Estatus</option>
-            </select>
-        </div>
-        <div class="col-lg-2">
-            <button class="btn btnAceptar" style="width: 100%;">Buscar</button>
-        </div>
-    </div>
+    </form>
     <div class="row mb-5" *ngIf="this.alumnos?.length==0">
         <div class="col-lg-12">
             <legend>No hay registros para desplegar. 😿</legend>
